@@ -8,15 +8,17 @@
 import traceback
 from typing import Callable
 
+from py_log import get_logger
 from retrying import retry
-from loguru import logger
 import os
 import requests
-from tomorrow3 import threads as tomorrow_threads
+
+logger = get_logger(__name__,formatter_template=1)
 
 
 class DownloadVideo(object):
-    def __init__(self,down_url:str, file_name:str='', file_dir:str='video',file_type:str='',callback: Callable = None):
+    def __init__(self, down_url: str, file_name: str = '', file_dir: str = 'video', file_type: str = '',
+                 callback: Callable = None):
         """
         :param down_url: 待下载的资源url
         :param file_name: 保存的资源名称
@@ -30,10 +32,10 @@ class DownloadVideo(object):
         else:
             self.file_name = os.path.basename(down_url).split('.')[0]
         if file_type:
-            self.file_type =file_type
+            self.file_type = file_type
         else:
-            if len(self.file_name.split('.'))==2:
-                    self.file_type = self.file_name.split('.')[1]
+            if len(self.file_name.split('.')) == 2:
+                self.file_type = self.file_name.split('.')[1]
             else:
                 self.file_type = 'mp4'
         self.file_dir = file_dir
@@ -58,7 +60,7 @@ class DownloadVideo(object):
         '''
         try:
             if self.down_url:
-                if len(self.file_name.split('.'))==1:
+                if len(self.file_name.split('.')) == 1:
                     saveFile = f'{self.video_path}/{self.file_name}.{self.file_type}'
                 else:
                     saveFile = f'{self.video_path}/{self.file_name}'
@@ -76,12 +78,16 @@ class DownloadVideo(object):
         #     if self.callback:
         #         self.callback()
 
+
 if __name__ == '__main__':
     print('下载')
     down_url = 'https://video1.matafy.com/dyvideo/201811/6609568770908228877.mp4'
+
+
     # down_url = 'https://inews.gtimg.com/newsapp_bt/0/10562505649/1000'
     def download_callback():
         print('excute download callback')
 
-    download_video = DownloadVideo(down_url,file_name='',file_dir='douyin',file_type='',callback=download_callback)
+
+    download_video = DownloadVideo(down_url, file_name='', file_dir='douyin', file_type='', callback=download_callback)
     download_video.download_video()

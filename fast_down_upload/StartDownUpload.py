@@ -3,7 +3,7 @@
 # @TIME 2019/10/21 23:12
 import json
 
-from loguru import logger
+from py_log import get_logger
 from redis_queue_tool import RedisQueue
 from redis_queue_tool.RedisQueue import RedisPublish, RedisCustomer
 
@@ -12,6 +12,7 @@ from fast_down_upload import configs as config
 from fast_down_upload.DownLoad import DownloadVideo
 from fast_down_upload.UploadFile import UploadloadVideo
 
+logger = get_logger(__name__, formatter_template=1)
 RedisQueue.redis_host = config.redis_host
 RedisQueue.redis_password = config.redis_password
 RedisQueue.redis_port = config.redis_port

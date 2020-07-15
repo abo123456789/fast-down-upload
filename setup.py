@@ -6,11 +6,12 @@ from setuptools import setup, find_packages
 
 setup(
     name='fast-down-upload',
-    version=1.6,
+    version=1.7,
     description=(
         '分布式文件下载上传'
     ),
-    long_description=open('README.rst').read(),
+    long_description_content_type="text/markdown",
+    long_description=open('README.md', encoding='utf-8').read(),
     author='cc',
     author_email='abcdef123456chen@sohu.com',
     maintainer='cc',
@@ -20,8 +21,8 @@ setup(
         "requests>=2.22.0",
         "tomorrow3>=1.1.0",
         "retrying>=1.3.3",
-        "loguru>=0.3.2",
-        "redis-queue-tool>=2.1"
+        "py-log>=1.9",
+        "redis-queue-tool>=4.3.8"
     ],
     packages=find_packages(),
     platforms=["all"],

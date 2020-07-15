@@ -8,9 +8,11 @@ import traceback
 from typing import Callable
 
 import oss2, os
-from loguru import logger
+from py_log import get_logger
 
 from fast_down_upload import configs as config
+
+logger = logger = get_logger(__name__,formatter_template=1)
 
 auth = oss2.Auth(config.aliyun_access_key_id, config.aliyun_access_key_secret)
 endpoint = config.aliyun_endpoint

@@ -1,6 +1,6 @@
 requests
 tomorrow3
 oss2
-loguru
+py-log
 retrying
 redis-queue-tool
